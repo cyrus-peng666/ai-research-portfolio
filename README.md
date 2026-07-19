@@ -10,7 +10,7 @@
 |---|---|---|
 | [DeepGELOB](docs/deepgelob.md) | 标准价量 LOB 是否遗漏队列组成、订单老化与事件强度信息？ | 论文状态说明、语义分组模型、标签审计、合成数据 smoke test |
 | [LOB Reproduction Lab](docs/lob-reproduction.md) | DeepLOB、C(TABL)、BiN、DAIN 与 HLOB 分别引入了什么归纳偏置？ | 统一输入接口、架构级重新实现、shape/gradient tests、复现边界说明 |
-| [Research Agent](docs/research-agent.md) | 如何把研究流程拆成可暂停、可复核、可恢复的工作流？ | LangGraph-compatible 状态机、人工审批门、离线 deterministic demo、测试 |
+| [Research Agent](docs/research-agent.md) | 如何把研究流程拆成可暂停、可复核、可恢复的工作流？ | LangGraph `StateGraph` 适配器、人工审批门、离线 deterministic demo、测试 |
 | [Agent 技术与投资研究样稿](docs/agent-investment-sample.md) | Agent 价值链中，哪些环节更可能形成产品壁垒？ | 技术栈地图、评测框架、商业化假设、尽调问题清单 |
 
 ## 与岗位要求的对应关系
