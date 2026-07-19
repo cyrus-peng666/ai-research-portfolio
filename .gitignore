@@ -1,0 +1,27 @@
+.DS_Store
+.idea/
+.vscode/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+dist/
+build/
+
+# Never publish raw or licensed market data, model weights, predictions, or credentials.
+data/
+raw_data/
+outputs/
+checkpoints/
+*.parquet
+*.feather
+*.h5
+*.pt
+*.pth
+*.ckpt
+.env
+.env.*
+!.env.example
+
