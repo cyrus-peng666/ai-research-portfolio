@@ -49,6 +49,15 @@ def test_strict_target_uses_future_only_and_never_crosses_day() -> None:
     assert target[5] == pytest.approx(203.0 / 200.0 - 1.0)
 
 
+def test_strict_target_excludes_all_events_at_decision_timestamp() -> None:
+    mid = np.array([100.0, 200.0, 100.0])
+    timestamps = np.array([0.0, 0.0, 1.0])
+    target = strict_future_average_return(mid, timestamps, [0, 0, 0], horizon_seconds=1.0)
+    assert target[0] == pytest.approx(0.0)
+    assert target[1] == pytest.approx(-0.5)
+    assert np.isnan(target[2])
+
+
 def test_day_aware_windows_and_chronological_split() -> None:
     days = np.repeat(np.arange(4), 4)
     ends = day_aware_window_end_indices(days, 3)

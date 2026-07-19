@@ -85,7 +85,10 @@ def strict_future_average_return(
             horizon_end = current_time + horizon_seconds
             if day_times[-1] < horizon_end:
                 continue
-            future_start = local_i + 1
+            # Several order-book events can share one exchange timestamp.  A
+            # strict time-based target must exclude every observation at
+            # ``current_time``, not only the current row.
+            future_start = int(np.searchsorted(day_times, current_time, side="right"))
             future_stop = int(np.searchsorted(day_times, horizon_end, side="right"))
             required = future_stop - future_start
             if required <= 0 or not finite_positive[local_i]:
@@ -303,4 +306,3 @@ def build_day_aware_windows(
         end_indices=endpoints,
         day_ids=days[endpoints],
     )
-
