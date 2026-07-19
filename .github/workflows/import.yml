@@ -1,0 +1,22 @@
+name: Import portfolio history
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ai-research-portfolio-public-v2.bundle
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import verified local history
+        run: |
+          git bundle verify ai-research-portfolio-public-v2.bundle
+          git fetch ai-research-portfolio-public-v2.bundle github-import-stage:portfolio-main
+          test "$(git show portfolio-main:README.md | sed -n '1p')" = "# AI Research Portfolio"
+          git push --force-with-lease=main:$GITHUB_SHA origin portfolio-main:main
